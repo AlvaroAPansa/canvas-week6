@@ -17,3 +17,6 @@ https://alvaroapansa.github.io/canvas-week6/
 6. Images and sound
 7. Optimization for Javascript
 8. RequestAnimationFrame
+9. RequestAnimationFrame: Regulating time between devices
+10. Object Oriented Programming
+11. Snake - Stretch the Canvas to fill the screen

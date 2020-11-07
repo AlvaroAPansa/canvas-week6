@@ -39,6 +39,14 @@
         lastPress = evt.which;
     }, false);
 
+    function resize() {
+        var w = window.innerWidth / canvas.width;
+        var h = window.innerHeight / canvas.height;
+        var scale = Math.min(w, h);
+        canvas.style.width = (canvas.width * scale) + 'px';
+        canvas.style.height = (canvas.height * scale) + 'px';
+    }
+
     function Rectangle(x, y, width, height) {
         this.x = (x === undefined) ? 0 : x;
         this.y = (y === undefined) ? 0 : y;
@@ -72,7 +80,7 @@
             if (img.width) {
                 ctx.drawImage(img, this.x, this.y);
             } else {
-                ctx.strokeRect(this.x, this.y, this.width, this.heigh);
+                ctx.strokeRect(this.x, this.y, this.width, this.height);
             }
         }
     };
@@ -244,7 +252,7 @@
             frames = 0;
             acumDelta -= 1;
         }
-        //FPS Code
+        //FPS Code end
         paint(ctx);
     }
 
@@ -275,10 +283,11 @@
         wall.push(new Rectangle(200, 50, 10, 10));
         wall.push(new Rectangle(200, 100, 10, 10));*/
         // Start game
+        resize();
         run();
         repaint();
-        console.log(Date.now());
     }
 
     window.addEventListener('load', init, false);
+    window.addEventListener('resize', resize, false);
 }(window));

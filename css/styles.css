@@ -1,0 +1,14 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #000;
+    text-align: center;
+}
+h1 {
+    color: #fff;
+}
+/*#canvas {
+    background: #999;
+    width: 100%;
+    height: 100%;
+}*/
