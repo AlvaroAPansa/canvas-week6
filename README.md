@@ -12,3 +12,8 @@ https://alvaroapansa.github.io/canvas-week6/
 1. Drawing in the Canvas
 2. Animating the Canvas  
 3. Using the keyboard
+4. Interacting with other elements
+5. Interacting with several equal elements
+6. Images and sound
+7. Optimization for Javascript
+8. RequestAnimationFrame

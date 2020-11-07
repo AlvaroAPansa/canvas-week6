@@ -19,7 +19,12 @@
     iBody = new Image(),
     iFood = new Image(),
     aEat = new Audio(),
-    aDie = new Audio();
+    aDie = new Audio(),
+    //FPS Variables
+    lastUpdate = 0,
+    FPS = 0,
+    frames = 0,
+    acumDelta = 0;
 
     window.requestAnimationFrame = (function () {
         return window.requestAnimationFrame ||
@@ -133,6 +138,7 @@
             }
             ctx.textAlign = 'left';
         }
+        ctx.fillText('FPS: ' + FPS, 10, 20);
     }
 
     function act() {
@@ -224,6 +230,21 @@
 
     function repaint() {
         window.requestAnimationFrame(repaint);
+        //FPS Code
+        var now = Date.now(),
+            deltaTime = (now - lastUpdate) / 1000;
+        if (deltaTime > 1) {
+            deltaTime = 0;
+        }
+        lastUpdate = now;
+        frames += 1;
+        acumDelta += deltaTime;
+        if (acumDelta > 1) {
+            FPS = frames;
+            frames = 0;
+            acumDelta -= 1;
+        }
+        //FPS Code
         paint(ctx);
     }
 
@@ -256,6 +277,7 @@
         // Start game
         run();
         repaint();
+        console.log(Date.now());
     }
 
     window.addEventListener('load', init, false);
