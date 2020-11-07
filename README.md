@@ -8,3 +8,4 @@ That functionality has to add the tipical fruit that aleatorily appears in the g
 ## Sections
 1. Drawing in the Canvas
 2. Animating the Canvas  
+3. Using the keyboard
