@@ -42,7 +42,11 @@
         // High Scores variables
         highscores = [],
         posHighscore = 10,
-        highscoresScene = undefined;
+        highscoresScene = undefined,
+        // Challenge variables
+        fruitCount = 0,// To count the amount of regular fruit eaten since the last bonus
+        bonusTrigger = false,// To define if the bonus fruit should be triggered or not
+        countTrigger = undefined;// To define the fuits since which the bonus fruit will be triggered
 
     window.requestAnimationFrame = (function () {
         return window.requestAnimationFrame ||
@@ -59,6 +63,10 @@
         }
         lastPress = evt.which;
     }, false);
+
+    function defineTrigger() { // min and max included 
+        return Math.floor(Math.random() * (12 - 8 + 1) + 8);
+    }
 
     function Rectangle(x, y, width, height) {
         this.x = (x === undefined) ? 0 : x;
@@ -337,7 +345,7 @@
         // Load assets
         iBody.src = 'assets/body.png';
         iFood.src = 'assets/fruit.png';
-        iBonus.src = 'assets/bonus.png';// --Challenge Line -- Loads bonus image
+        iBonus.src = 'assets/bonus.png';// -- Challenge Line -- Loads bonus image
         if (canPlayOgg()) {
             aEat.src = 'assets/chomp.oga';
             aDie.src = 'assets/dies.oga';
@@ -347,7 +355,8 @@
         };
         // Create food and bonus
         food = new Rectangle(80, 80, 10, 10);
-        bonus = new Rectangle(80, 80, 10, 10);// --Challenge Line -- Creates bonus object (Rectagle type)
+        bonus = new Rectangle(80, 80, 10, 10);// -- Challenge Line -- Creates bonus object (Rectagle type)
+        countTrigger = defineTrigger();// -- Challenge Line -- Defines randomly (between 8 and 12) the fruit count that will trigger the bonus
         // Create walls
         /*wall.push(new Rectangle(100, 50, 10, 10));
         wall.push(new Rectangle(100, 100, 10, 10));
@@ -397,6 +406,8 @@
         body.push(new Rectangle(0, 0, 10, 10));
         food.x = random(buffer.width / 10 - 1) * 10;
         food.y = random(buffer.height / 10 - 1) * 10;
+        bonus.x = random(buffer.width / 10 - 1) * 10;
+        bonus.y = random(buffer.height / 10 - 1) * 10;
         gameover = false;
     }
 
@@ -414,6 +425,11 @@
         // Draw food
         ctx.strokeStyle = '#f00';
         food.drawImage(ctx, iFood);
+        // -- Challenge section -- Draw bonus
+        if (bonusTrigger === true) {
+            ctx.fillStyle = '#F0F';
+            bonus.drawImage(ctx, iBonus);
+        }
         // Draw score
         ctx.fillStyle = '#fff';
         ctx.fillText('Score: ' + score, 0, 10);
@@ -438,6 +454,8 @@
             // GameOver Reset
             if (gameover) {
                 loadScene(highscoresScene);
+                fruitCount = 0;// -- Challenge line -- Resets the count to bonus in game over
+                bonusTrigger = false;// -- Challenge line -- Resets the trigger of the bonus in game over
             }
             // Move Body
             for (i = body.length - 1; i > 0; i -= 1) {
@@ -499,6 +517,20 @@
                 food.x = random(buffer.width / 10 - 1) * 10;
                 food.y = random(buffer.height / 10 - 1) * 10;
                 aEat.play();
+                fruitCount += 1;// -- Challenge line --
+                if (fruitCount === countTrigger) { // -- Challenge line -- Conditional to trigger the bonus fruit if count==trigger
+                    bonusTrigger = true;
+                }
+            }
+            // Bonus Intersects -- Challenge section --
+            if (body[0].intersects(bonus) && bonusTrigger === true) {
+                score += 5;
+                bonus.x = random(buffer.width / 10 - 1) * 10;
+                bonus.y = random(buffer.height / 10 - 1) * 10;
+                aEat.play();
+                fruitCount = 0;// Resets the count that will trigger the bonus
+                countTrigger = defineTrigger();// Defines a new point to trigger the bonus
+                bonusTrigger = false;//Eliminates sections that paint and intersects the bonus
             }
         }
         // Pause/Unpause
