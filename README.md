@@ -21,3 +21,4 @@ https://alvaroapansa.github.io/canvas-week6/
 10. Object Oriented Programming
 11. Snake - Stretch the Canvas to fill the screen
 12. Double buffer and pixelated scaling
+13. Scenes managing
