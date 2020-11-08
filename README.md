@@ -3,7 +3,9 @@
 
 This project consists in replicating the snake game using Canvas by following the "Juegos Canvas Ninja" tutorial and adding an additional functionality at the end.
 
-That functionality has to add the tipical fruit that aleatorily appears in the grid and gives bonus points to the player without increasing the length of the snake.
+That functionality has to add the tipical fruit that aleatorily appears in the grid and gives bonus points to the player without increasing the length of the snake.  
+
+The lines of code added to fullfill the challenge are all commented after the line with //---Challenge line---
 
 ## Github Pages Link  
 https://alvaroapansa.github.io/canvas-week6/

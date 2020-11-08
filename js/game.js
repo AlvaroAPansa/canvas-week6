@@ -17,8 +17,10 @@
         //wall = [],
         body = [],
         food = undefined,
+        bonus = undefined,
         iBody = new Image(),
         iFood = new Image(),
+        iBonus = new Image(),
         aEat = new Audio(),
         aDie = new Audio(),
         //FPS variables
@@ -335,6 +337,7 @@
         // Load assets
         iBody.src = 'assets/body.png';
         iFood.src = 'assets/fruit.png';
+        iBonus.src = 'assets/bonus.png';// --Challenge Line -- Loads bonus image
         if (canPlayOgg()) {
             aEat.src = 'assets/chomp.oga';
             aDie.src = 'assets/dies.oga';
@@ -342,8 +345,9 @@
             aEat.src = 'assets/chomp.m4a';
             aDie.src = 'assets/dies.m4a';
         };
-        // Create food
+        // Create food and bonus
         food = new Rectangle(80, 80, 10, 10);
+        bonus = new Rectangle(80, 80, 10, 10);// --Challenge Line -- Creates bonus object (Rectagle type)
         // Create walls
         /*wall.push(new Rectangle(100, 50, 10, 10));
         wall.push(new Rectangle(100, 100, 10, 10));
