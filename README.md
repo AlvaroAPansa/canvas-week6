@@ -1,4 +1,4 @@
-# Week 6 Problematic
+# Week 6 Challenge
 **Radium Rocket's Become a Software Developer course - Week 6 (JS Async & POO)**  
 
 This project consists in replicating the snake game using Canvas by following the "Juegos Canvas Ninja" tutorial and adding an additional functionality at the end.
@@ -22,3 +22,4 @@ https://alvaroapansa.github.io/canvas-week6/
 11. Snake - Stretch the Canvas to fill the screen
 12. Double buffer and pixelated scaling
 13. Scenes managing
+14. Local storage and high scores
