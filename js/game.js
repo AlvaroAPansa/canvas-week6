@@ -553,7 +553,7 @@
                 sendScore('https://jsonplaceholder.typicode.com/comments')
                 .then(
                     (reply) => {
-                        console.log(reply);
+                        console.log('Score sent successfully')
                     }
                 )
                 .catch(
