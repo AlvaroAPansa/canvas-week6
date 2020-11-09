@@ -66,7 +66,7 @@
         lastPress = evt.which;
     }, false);
 
-    function defineTrigger() { // min and max included 
+    function defineTrigger() { // -- Challenge function -- Random integer between 8 and 12
         return Math.floor(Math.random() * (12 - 8 + 1) + 8);
     }
 
@@ -431,7 +431,7 @@
                 aEat.play();
                 fruitCount = 0;// Resets the count that will trigger the bonus
                 countTrigger = defineTrigger();// Defines a new point to trigger the bonus
-                bonusTrigger = false;//Eliminates sections that paint and intersects the bonus
+                bonusTrigger = false;//Eliminates sections that paint and intersect the bonus
                 if (firstRequest) {// Adds the query params to the URL
                     scoreUrl += '?score=' + score;
                     firstRequest = false;
