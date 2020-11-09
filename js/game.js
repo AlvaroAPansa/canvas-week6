@@ -550,7 +550,7 @@
                 fruitCount = 0;// Resets the count that will trigger the bonus
                 countTrigger = defineTrigger();// Defines a new point to trigger the bonus
                 bonusTrigger = false;//Eliminates sections that paint and intersects the bonus
-                sendScore('www.jsonplaceholder.com?score=100')
+                sendScore('https://jsonplaceholder.typicode.com/comments')
                 .then(
                     (reply) => {
                         console.log(reply);
