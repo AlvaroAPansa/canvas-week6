@@ -68,6 +68,25 @@
         return Math.floor(Math.random() * (12 - 8 + 1) + 8);
     }
 
+    function sendScore (url) {
+        const promise = new Promise((resolve, reject) => {
+            let request = new XMLHttpRequest();
+            request.open('GET', url, true);
+            request.onreadystatechange = function (e) {
+                if(request.readyState === 4) {
+                    if(request.status >= 200 && request.status < 400) {
+                        let reply = request.responseText;
+                        resolve(reply);
+                    } else {
+                        reject('Error trying to send the score')
+                    }
+                }
+            };
+            request.send();
+        });
+        return promise;
+    }
+
     function Rectangle(x, y, width, height) {
         this.x = (x === undefined) ? 0 : x;
         this.y = (y === undefined) ? 0 : y;
@@ -531,6 +550,17 @@
                 fruitCount = 0;// Resets the count that will trigger the bonus
                 countTrigger = defineTrigger();// Defines a new point to trigger the bonus
                 bonusTrigger = false;//Eliminates sections that paint and intersects the bonus
+                sendScore('www.jsonplaceholder.com?score=100')
+                .then(
+                    (reply) => {
+                        console.log(reply);
+                    }
+                )
+                .catch(
+                    (error) => {
+                        console.log(error);
+                    }
+                )
             }
         }
         // Pause/Unpause
