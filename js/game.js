@@ -46,7 +46,9 @@
         // Challenge variables
         fruitCount = 0,// To count the amount of regular fruit eaten since the last bonus
         bonusTrigger = false,// To define if the bonus fruit should be triggered or not
-        countTrigger = undefined;// To define the fuits since which the bonus fruit will be triggered
+        countTrigger = undefined,// To define the fuits since which the bonus fruit will be triggered
+        firstRequest = true,
+        scoreUrl = 'www.jsonplaceholder.com';// The strig of the URL where we will be adding the score on teh queryparams
 
     window.requestAnimationFrame = (function () {
         return window.requestAnimationFrame ||
@@ -550,7 +552,15 @@
                 fruitCount = 0;// Resets the count that will trigger the bonus
                 countTrigger = defineTrigger();// Defines a new point to trigger the bonus
                 bonusTrigger = false;//Eliminates sections that paint and intersects the bonus
-                sendScore('https://jsonplaceholder.typicode.com/comments')
+                if (firstRequest) {
+                    scoreUrl += '?score=' + score;
+                    firstRequest = false;
+                    console.log(scoreUrl);
+                } else {
+                    scoreUrl += '&score=' + score;
+                    console.log(scoreUrl);
+                }
+                sendScore(scoreUrl)
                 .then(
                     (reply) => {
                         console.log('Score sent successfully')
